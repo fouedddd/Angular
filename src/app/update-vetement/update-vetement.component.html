@@ -1,0 +1,47 @@
+<div class="container">
+    <div>
+    <h2>Modifier un Vetement :</h2>
+    </div>
+    <form >
+    <div hidden class="col-sm-2 col-md-2 col-lg-2">
+    <label >ID Vetement</label>
+    <input readonly type="text" [(ngModel)]="currentVetement.id_vetement"
+    name="id_vetement" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4" >
+    <label >Nom Vetement</label>
+    <input type="text"[(ngModel)]= "currentVetement.nom_vetement"
+    name="nom_vetement" class="form-control">
+    </div>
+    <div class="col-sm-2 col-md-2 col-lg-2">
+    <label >Prix Vetement</label>
+    <input type="number" [(ngModel)]= "currentVetement.prix_vetement"
+    name="prix_vetement" class="form-control">
+    </div>
+
+<div class="col-sm-2 col-md-2 col-lg-2">
+<label >Quantité</label>
+<input type="number" [(ngModel)]= "currentVetement.quantite_vetement"
+name="quantite_vetement" class="form-control">
+</div>
+<div class="col-sm-2 col-md-2 col-lg-2">
+    <label >Type Vetement</label>
+    <input type="text" [(ngModel)]= "currentVetement.type_vetement"
+    name="type_vetement" class="form-control">
+    </div>
+    <div class="col-sm-4 col-md-4 col-lg-4">
+        <label >Boutique</label>
+        <select class="form-control form-control-lg" id="idCat" name="idCat"
+        [(ngModel)]="updatedBouId">
+        <option *ngFor="let bou of boutiques" [value]="bou.id_boutique" >
+        {{bou.nom_bout}}
+        </option>
+        </select>
+        </div>
+    
+<div class="mt-2">
+<button type="submit" (click)="updateVetement()" class="btn btn-success">Modifer</button>
+</div>
+</form>
+</div>
+
