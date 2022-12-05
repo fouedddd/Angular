@@ -12,20 +12,32 @@ import { Router } from '@angular/router';
 export class AddVetementComponent {
 
 boutique! : Boutique[];
-newIdCat! : number;
+newIdBou! : number;
 newBoutique! :Boutique;
   newVetement = new Vetement();
   constructor(private vetementService: VetementService,private router :Router) { }
-  addVetement(){
-    this.newBoutique =
-this.vetementService.consulterBoutique(this.newIdCat);
-this.newVetement.boutique = this.newBoutique;
 
+  ngOnInit(): void {
+    this.vetementService.listeBoutique().
+    subscribe(bou => {this.boutique = bou;
+    console.log(bou);
+    });
+    }
+    
+  addVetement(){
+    this.newVetement.boutique = this.boutique.find(bou => bou.idBoutique == this.newIdBou)!;
+    this.vetementService.ajouterVetement(this.newVetement)
+    .subscribe(vets => {
+    console.log(vets);
+    this.router.navigate(['vetements']);
+    });
+    }
+    
 
 
     // console.log(this.newProduit);
-    this.vetementService.ajouterVetement(this.newVetement);
-    this.router.navigate(['vetements']);
+   /*  this.vetementService.ajouterVetement(this.newVetement);
+    this.router.navigate(['vetements']); */
     }
     
-}
+

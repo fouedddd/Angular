@@ -1,38 +1,38 @@
-<div class="container">
+ <div class="container">
     <div>
     <h2>Ajouter un Vetement :</h2>
     <form >
         <div class="col-sm-2 col-md-2 col-lg-2">
         <label >ID Vetement</label>
-        <input type="text" [(ngModel)]="newVetement.id_vetement"
-        name="id_vetement" class="form-control">
+        <input type="text" [(ngModel)]="newVetement.idVetement"
+        name="idVetement" class="form-control">
         </div>
         <div class="col-sm-4 col-md-4 col-lg-4" >
         <label >Nom Vetement</label>
-        <input type="text"[(ngModel)]= "newVetement.nom_vetement"
-        name="nom_vetement" class="form-control">
+        <input type="text"[(ngModel)]= "newVetement.nomVetement"
+        name="nomVetement" class="form-control">
         </div>
         <div class="col-sm-2 col-md-2 col-lg-2">
         <label >Prix Vetement</label>
-        <input type="number" [(ngModel)]= "newVetement.prix_vetement"
-        name="prix_vetement" class="form-control">
+        <input type="number" [(ngModel)]= "newVetement.prixVetement"
+        name="prixVetement" class="form-control">
         </div>
         <div class="col-sm-4 col-md-4 col-lg-4">
         <label >Quantité</label>
-        <input type="number" [(ngModel)]= "newVetement.quantite_vetement"
-        name="quantite_vetement" class="form-control">
+        <input type="number" [(ngModel)]= "newVetement.quantiteVetement"
+        name="quantiteVetement" class="form-control">
         </div>
         <div class="col-sm-4 col-md-4 col-lg-4" >
             <label >Type</label>
-            <input type="text"[(ngModel)]= "newVetement.type_vetement"
-            name="type_vetement" class="form-control">
+            <input type="text"[(ngModel)]= "newVetement.typeVetement"
+            name="typeVetement" class="form-control">
             </div>
             <div class="col-sm-4 col-md-4 col-lg-4">
                 <label>Boutique</label>
-                <select class="form-control form-control-lg" id="id_boutique" name="id_boutique"
-                [(ngModel)]="newIdCat">
-                 <option *ngFor="let bou of boutique" [value]="bou.id_boutique" >
-                 {{bou.nom_bout}}
+                <select class="form-control form-control-lg" id="idBoutique" name="idBoutique"
+                [(ngModel)]="newIdBou">
+                 <option *ngFor="let bou of boutique" [value]="bou.idBoutique" >
+                 {{bou.nomBout}}
                 </option>
                 </select>
                 </div>
@@ -42,3 +42,4 @@
         </form>
         </div>
     
+ 

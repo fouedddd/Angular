@@ -22,18 +22,33 @@ updatedBouId! : number;
 
 
   ngOnInit() {
-    // console.log(this.route.snapshot.params.id);
-    this.boutiques = this.vetementService.listeBoutique();
-
-    this.currentVetement = this.vetementService.consulterVetement(this.activatedRoute.snapshot.params['id']);
-    console.log(this.currentVetement);
+    this.vetementService.listeBoutique().
+    subscribe(bou => {this.boutiques = bou;
+    console.log(bou);
+    });
+    this.vetementService.consulterVetement(this.activatedRoute.snapshot.params['id']).
+    subscribe( vets =>{ this.currentVetement = vets;
+    this.updatedBouId =
+    this.currentVetement.boutique.idBoutique;
+    } ) ;
+    
+  
 
   }
-  updateVetement()
+  updateVetement() {
+    this.currentVetement.boutique = this.boutiques.
+    find(bou => bou.idBoutique == this.updatedBouId)!;
+   this.vetementService.updateVetement(this.currentVetement).subscribe(prod => {
+   this.router.navigate(['vetements']); }
+   );
+   
+
+    }
+ /*  updateVetement()
 { //console.log(this.currentProduit);
   this.currentVetement.boutique=this.vetementService.consulterBoutique(this.updatedBouId);
 
 this.vetementService.updateVetement(this.currentVetement);
 this.router.navigate(['vetements']);
-}
+} */
 }

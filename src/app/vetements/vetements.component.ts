@@ -11,16 +11,35 @@ export class VetementsComponent implements OnInit {
   vetements : Vetement[]; //un tableau de chînes de caractères
 
   constructor(private vetementservice: VetementService ) {
-    this.vetements = vetementservice.listeVetements();
+   
     }
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
+    this.vetementservice.listeVetements().subscribe(vets=>{
+      console.log(vets)
+      this.vetements=vets;
+    })
   }
-  supprimerVetement(v: Vetement)
+  chargerVetements(){
+    this.vetementservice.listeVetements().subscribe(vets => {
+    console.log(vets);
+    this.vetements = vets;
+    });
+    }
+    supprimerVetement(v: Vetement)
 {
-//console.log(v);
+let conf = confirm("Etes-vous sûr ?");
+if (conf)
+this.vetementservice.supprimerVetetement(v.idVetement).subscribe(() => {
+console.log("Vetement supprimé");
+this.chargerVetements();
+});
+} 
+  
+ /* supprimerVetement(v: Vetement)
+{
+console.log(v);
 let conf = confirm("Etes-vous sûr ?");
  if (conf)
 this.vetementservice.supprimerVetement(v);
-}
+}*/
 }

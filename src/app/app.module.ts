@@ -7,6 +7,7 @@ import { VetementsComponent } from './vetements/vetements.component';
 import { AddVetementComponent } from './add-vetement/add-vetement.component';
 import { FormsModule } from '@angular/forms';
 import { UpdateVetementComponent } from './update-vetement/update-vetement.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { UpdateVetementComponent } from './update-vetement/update-vetement.compo
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
 
   ],
   providers: [],

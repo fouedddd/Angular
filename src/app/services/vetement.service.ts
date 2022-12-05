@@ -1,36 +1,48 @@
 import { Injectable } from '@angular/core';
 import { Boutique } from '../model/boutique.model';
 import { Vetement } from '../model/vetement.model';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+const httpOptions = {
+  headers: new HttpHeaders( {'Content-Type': 'application/json'} )
+};
 
 @Injectable({
   providedIn: 'root'
 })
 export class VetementService {
 
-  private vetements: Vetement[]; //un tableau de Vetement
-  private vetement : Vetement;
-  private boutiques : Boutique[];
-  private boutique : Boutique;
-  constructor() {
-    this.vetements = [
-      {
-        id_vetement: 1, nom_vetement: "PCpantalon ", prix_vetement: 3000.600, quantite_vetement
-          : 5, type_vetement: "hiver",boutique :{id_boutique : 1,adresse:"nabeul",nom_bout : "strano"}
-      },
-      {
-        id_vetement: 2, nom_vetement: "chemise", prix_vetement: 450, quantite_vetement
-          : 2, type_vetement: "ete",boutique :{id_boutique : 1,adresse:"nabeul",nom_bout : "strano"}
-      },
-      {
-        id_vetement: 3, nom_vetement: "chapaux", prix_vetement: 900.123, quantite_vetement
-          : 10, type_vetement: "hiver",boutique :{id_boutique : 1,adresse:"nabeul",nom_bout : "strano"}
+apiURL: string = 'http://localhost:8080/vetement/api';
+
+  constructor(private http : HttpClient) {
+   
+  }
+  listeVetements(): Observable<Vetement[]>  {
+  
+    return this.http.get<Vetement[]>(this.apiURL);
+  }
+  ajouterVetement( vets: Vetement):Observable<Vetement>{
+    return this.http.post<Vetement>(this.apiURL, vets, httpOptions);
+    }
+    supprimerVetetement(id : number) {
+      const url = `${this.apiURL}/${id}`;
+      return this.http.delete(url, httpOptions);
       }
-    ];
+      consulterVetement(id: number): Observable<Vetement> {
+        const url = `${this.apiURL}/${id}`;
+        return this.http.get<Vetement>(url);
+        }
+        updateVetement(vets :Vetement) : Observable<Vetement>
+{
+return this.http.put<Vetement>(this.apiURL, vets, httpOptions);
+}
+listeBoutique():Observable<Boutique[]>{
+  return this.http.get<Boutique[]>(this.apiURL+"/bou");
   }
-  listeVetements(): Vetement[] {
-    return this.vetements;
-  }
-  ajouterVetement(vet: Vetement) {
+      
+    
+}
+  /*ajouterVetement(vet: Vetement) {
     this.vetements.push(vet);
   }
   supprimerVetement(vet: Vetement) {
@@ -44,7 +56,7 @@ export class VetementService {
     if(prod.idProduit === cur.idProduit) {
     this.produits.splice(index, 1);
     }
-    }); */
+    }); 
   }
   consulterVetement(id: number): Vetement {
     this.vetement = this.vetements.find(p => p.id_vetement == id);
@@ -79,4 +91,4 @@ listeBoutique():Boutique[] {
     }
   
 
-}
+}*/

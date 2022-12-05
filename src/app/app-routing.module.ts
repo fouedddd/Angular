@@ -7,7 +7,7 @@ import { AddVetementComponent } from './add-vetement/add-vetement.component';imp
 const routes: Routes = [{path: "vetements", component : VetementsComponent},
 {path: "add-vetement", component : AddVetementComponent},
 { path: "", redirectTo: "vetements", pathMatch: "full" },
-{path: "updateVetement/:id_vetement", component: UpdateVetementComponent}
+{path: "updateVetement/:id", component: UpdateVetementComponent}
 
 ];
 
